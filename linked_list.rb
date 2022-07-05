@@ -27,4 +27,8 @@ class LinkedList
     def size(node= @head_node, count= 1)
         node.next_node ? size(node.next_node, count + 1) : count
     end
+
+    def head
+        @head_node
+    end
 end
