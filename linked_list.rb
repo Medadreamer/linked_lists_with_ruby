@@ -48,14 +48,11 @@ class LinkedList
         @last_node = at(self.size - 1)
         @last_node.next_node = nil
     end
+
+    def contains? (value, node= @head_node, found= false)
+        node.value == value ? true : 
+        node.next_node == nil && !found ? false : 
+        found = contains?(value, node.next_node, found)
+    end
 end
 
-
-list = LinkedList.new("this is the head")
-list.append("I am a node")
-list.append("this is another node")
-list.append("and anotherr")
-p list.tail
-list.pop
-p list.tail
-p list.size
