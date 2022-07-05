@@ -36,5 +36,19 @@ class LinkedList
     def tail
         @last_node
     end
+
+    def at(node= @head_node, index)
+        if index > self.size || index < 1
+            return "This list starts at 1 and ends at #{self.size}"
+        end
+        index == 1 ? node.value: at(node.next_node ,index - 1)
+    end
 end
 
+
+list = LinkedList.new("this is the head")
+list.append("I am a node")
+list.append("this is another node")
+list.append("and anotherr")
+p list.at(10)
+p list.size
