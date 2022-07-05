@@ -41,7 +41,12 @@ class LinkedList
         if index > self.size || index < 1
             return "This list starts at 1 and ends at #{self.size}"
         end
-        index == 1 ? node.value: at(node.next_node ,index - 1)
+        index == 1 ? node: at(node.next_node ,index - 1)
+    end
+    
+    def pop
+        @last_node = at(self.size - 1)
+        @last_node.next_node = nil
     end
 end
 
@@ -50,5 +55,7 @@ list = LinkedList.new("this is the head")
 list.append("I am a node")
 list.append("this is another node")
 list.append("and anotherr")
-p list.at(10)
+p list.tail
+list.pop
+p list.tail
 p list.size
