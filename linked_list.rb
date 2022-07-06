@@ -47,24 +47,25 @@ class LinkedList
         @last_node.next_node = nil
     end
 
-    def contains? (value, node= @head_node, found= false)
+    def contains? (value, node= @head_node)
         node.value == value ? true : 
-        node.next_node == nil && !found ? false : 
-        found = contains?(value, node.next_node, found)
+        node.next_node == nil ? false : 
+        contains?(value, node.next_node)
     end
 
-    def find(value, node= @head_node, index= 0, found= false)
+    def find(value, node= @head_node, index= 0)
         index += 1
         node.value == value ? index :
-        node.next_node == nil && !found ?  index = false :
-        index = find(value, node.next_node, index, found)
+        node.next_node == nil ?  index = false :
+        find(value, node.next_node, index)
     end
+
+    def to_s(node= @head_node)
+        print "(#{node.value}) -> "
+        !node.next_node ? return : to_s(node.next_node)
+    end
+
 end
 
 
-list = LinkedList.new("this is the head")
-list.append("I am a node")
-list.append("this is another node")
-list.append("and anotherr")
-p list.find("and anotherr")
-p list.size
+
