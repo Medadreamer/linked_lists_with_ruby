@@ -37,10 +37,8 @@ class LinkedList
         @last_node
     end
 
-    def at(node= @head_node, index)
-        if index > self.size || index < 1
-            return "This list starts at 1 and ends at #{self.size}"
-        end
+    def at(node= @head_node, index) 
+        index > self.size || index < 1 ? "This list starts at 1 and ends at #{self.size}": 
         index == 1 ? node: at(node.next_node ,index - 1)
     end
     
@@ -54,5 +52,19 @@ class LinkedList
         node.next_node == nil && !found ? false : 
         found = contains?(value, node.next_node, found)
     end
+
+    def find(value, node= @head_node, index= 0, found= false)
+        index += 1
+        node.value == value ? index :
+        node.next_node == nil && !found ?  index = false :
+        index = find(value, node.next_node, index, found)
+    end
 end
 
+
+list = LinkedList.new("this is the head")
+list.append("I am a node")
+list.append("this is another node")
+list.append("and anotherr")
+p list.find("and anotherr")
+p list.size
