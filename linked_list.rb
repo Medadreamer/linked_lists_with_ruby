@@ -65,7 +65,17 @@ class LinkedList
         !node.next_node ? return : to_s(node.next_node)
     end
 
-end
+    def insert_at(value, index, node=@head_node)
+        index -= 1
+        if index == 1
+            new_node = Node.new(value)
+            new_node.next_node = node.next_node
+            node.next_node = new_node
+            return
+        end
+        insert_at(value, index, node.next_node)
+    end
 
+end
 
 
