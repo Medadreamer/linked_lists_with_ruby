@@ -66,6 +66,10 @@ class LinkedList
     end
 
     def insert_at(value, index, node=@head_node)
+        if index > self.size || index < 1
+            return "This list starts at 1 and ends at #{self.size}"
+        end
+
         index -= 1
         if index == 1
             new_node = Node.new(value)
@@ -76,6 +80,20 @@ class LinkedList
         insert_at(value, index, node.next_node)
     end
 
-end
+    def remove_at(index, node=@head_node)
+        if index > self.size || index < 1
+            return "This list starts at 1 and ends at #{self.size}"
+        end
+        
+        index -= 1
+        if index == 1
+            removed_node = node.next_node
+            node.next_node = removed_node.next_node
+            removed_node.next_node = nil
+            return
+        end
+        remove_at(index, node.next_node)
+    end
 
+end
 
